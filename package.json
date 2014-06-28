@@ -1,0 +1,41 @@
+{
+  "name": "level-patch-data",
+  "description": "Store and read object patches (with metadata) in insert order",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nrw/level-patch-data.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "dependencies": {
+    "xtend": "~3.0.0"
+  },
+  "devDependencies": {
+    "concat-stream": "~1.4.6",
+    "level-test": "~1.6.3",
+    "tape": "2.x.x"
+  },
+  "homepage": "https://github.com/nrw/level-patch-data",
+  "keywords": [
+    "patch",
+    "data",
+    "changeset"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Nicholas Westlake"
+  },
+  "testling": {
+    "files": "test/*.js",
+    "browsers": [
+      "ie/8..latest",
+      "firefox/latest",
+      "chrome/latest",
+      "opera/latest",
+      "safari/latest"
+    ]
+  }
+}
