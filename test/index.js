@@ -8,8 +8,12 @@ var db = level('patch-test', {valueEncoding: 'json'})
 var patch = Patch(db)
 
 test('adds patch', function (t) {
-  patch.add('doc1', {a: 'b'}, function (err) {
+  patch.add('doc1', {a: 'b'}, function (err, commit) {
     t.error(err, 'no err')
+
+    t.same(commit.patch, {a: 'b'}, 'correct patch')
+    t.ok(/^doc1\xff/.test(commit.key), 'has key')
+    t.ok(commit.ts, 'has timestamp')
     t.end()
   })
 })

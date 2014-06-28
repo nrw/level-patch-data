@@ -15,8 +15,8 @@ var Patch = require('level-patch-data')
 var db = level('patch-test', {valueEncoding: 'json'})
 var patch = Patch(db)
 
-patch.add('doc', {a: 'a'}, {user: 'lee'}, function (err) {
-  patch.add('doc', {b: 'c'}, {user: 'kara'}, function (err) {
+patch.add('doc', {a: 'a'}, {user: 'lee'}, function (err, commit) {
+  patch.add('doc', {b: 'c'}, {user: 'kara'}, function (err, commit) {
 
     patch.readStream('doc').pipe(concat(function (body) {
       // body is
@@ -67,8 +67,8 @@ alias: `addPatch`
 - `meta`: key/value pairs to store with this patch. Note: the keys
   `opts.timestampField`, `opts.keyField`, and `opts.patchField` will be
   overwritten if set.
-- `callback`: passed directly to `db.put`. receives one argument, `err` if
-  an error occurs.
+- `callback`: receives two arguments, `err` which is only set if an error occurs
+  and `commit`, which is the patch and its metadata exactly as it was saved.
 
 ### patch.readStream(namespace)
 

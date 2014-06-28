@@ -30,7 +30,12 @@ module.exports = function (db, opts) {
     props[opts.keyField] = key
     props[opts.patchField] = patch
 
-    db.put(key, extend(meta, props), cb)
+    var value = extend(meta, props)
+
+    db.put(key, value, function (err) {
+      if (err) return cb(err)
+      cb(null, value)
+    })
   }
 
   function patchStream (namespace) {
