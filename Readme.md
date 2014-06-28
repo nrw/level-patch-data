@@ -48,9 +48,10 @@ See tests for more examples.
 - `opts.key`: the function to use to generate each patch's key. Use a custom
   key to add some entropy if there is a chance you'll have two commits in the
   same millisecond.
+
   ```js
   // default
-  function (meta, namespace, opts) {
+  opts.key = function (meta, namespace, opts) {
     return [namespace, meta[opts.timestampField]].join(opts.separator)
   }
   ```
