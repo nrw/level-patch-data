@@ -38,9 +38,9 @@ module.exports = function (db, opts) {
     })
   }
 
-  function patchStream (namespace) {
+  function patchStream (namespace, start) {
     var range = {
-      start: namespace+opts.separator+'\x00',
+      start: (start || namespace+opts.separator)+'\x00',
       end:   namespace+opts.separator+'\xff'
     }
     return db.valueStream(range)

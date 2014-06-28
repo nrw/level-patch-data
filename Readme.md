@@ -70,7 +70,7 @@ alias: `addPatch`
 - `callback`: receives two arguments, `err` which is only set if an error occurs
   and `commit`, which is the patch and its metadata exactly as it was saved.
 
-### patch.readStream(namespace)
+### patch.readStream(namespace, since)
 
 aliases: `createReadStream`, `read`
 
@@ -78,6 +78,8 @@ Returns a readable stream that emits patches for `namespace` in insert order.
 
 - `namespace`: the collection of patches to read. patches will be streamed in
   the order inserted.
+- `since`: optional. pass the `key` of the commit to read commits since. The
+  commit with `key === since` will not be returned, only all commits after it.
 
 ## License
 

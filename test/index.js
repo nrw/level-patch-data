@@ -100,3 +100,17 @@ test('custom key', function (t) {
     }))
   })
 })
+
+test('get since commit id', function (t) {
+  patch.readStream('doc1').pipe(concat(function (base) {
+    patch.readStream('doc1', base[0].key).pipe(concat(function (body) {
+
+      t.same(body.length, 1, 'correct number of patches')
+      t.same(body[0].patch, {a: 'c'}, 'correct patches')
+      t.equal(body[0].user, 'lee', 'with user')
+      t.ok(/^doc1\xff/.test(body[0].key), 'has key')
+      t.ok(body[0].ts, 'has timestamp')
+      t.end()
+    }))
+  }))
+})
