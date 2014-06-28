@@ -74,6 +74,8 @@ alias: `addPatch`
 
 aliases: `createReadStream`, `read`
 
+Returns a readable stream that emits patches for `namespace` in insert order.
+
 - `namespace`: the collection of patches to read. patches will be streamed in
   the order inserted.
 
